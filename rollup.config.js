@@ -33,6 +33,7 @@ const config = {
       output: true,
       // Filename to write all styles to
       output: "build/bundle.css",
+      sass: require("sass"),
     }),
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
@@ -43,7 +44,7 @@ const config = {
       browser: true,
     }),
     commonjs(),
-    babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
+    babel({ babelHelpers: "runtime", exclude: "node_modules/**" }),
   ],
 };
 
@@ -67,11 +68,12 @@ const develop = {
       output: true,
       // Filename to write all styles to
       output: "dev/bundle.css",
+      sass: require("sass"),
     }),
     replace({
       "process.env.NODE_ENV": JSON.stringify("development"),
     }),
-    babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
+    babel({ babelHelpers: "runtime", exclude: "node_modules/**" }),
     resolve({
       jsnext: true,
       main: true,
